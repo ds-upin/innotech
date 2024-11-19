@@ -3,12 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Peepal Farm</title>
-    <link rel="stylesheet" href="../CSS/membership_style.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css" integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-    <link rel="icon" href="../statics/logo.jpeg" type="image/x-icon">
+    <title>Animal Adoption</title>
+    <link href="../CSS/adoptions.css" rel="stylesheet">
 </head>
-<body>
+<body  style="background-color:#d5bc93">
     <header>
         <div class="navbar">
             <div class="logo">
@@ -44,58 +42,52 @@
            </div>
         </div>
     </header>
-
-    <div class="heading">BECOME A VOLUNTEER</div>
     <div class="content">
-        <div class=" content-box content-box-1">
-            <input placeholder="name" class=" input-box-1 name">
-            <br>
-            <input placeholder="Email" class="input-box-1 email">
-            <br>
-            <input placeholder="Age" class="input-box-1 age">
-            <br>
-            <select class="input-box-1" style="color:grey">
-                <option>Specialisation</option>
-                <option>Veterinary Doctor</option>
-                <option>Veterinary Doctor</option>
-                <option>Animal Handler</option>
-                <option>Front Office</option>
-                <option>Human Resources</option>
-                <option>Social Media</option>
-                <option>Sales</option>
-                <option>Ambulance Driver</option>
-                <option>Other</option>
-            </select>
-            <br>
-            <input placeholder="Mobile Number" class="input-box-1 mobile-num">
-            <br>
-            <input placeholder="Aadhaar Number" class="input-box-1 Aadhaar-num">
-            <br>
-            <select class="input-box-1" style="color:grey">
-                <option>Gender</option>
-                <option>Male</option>
-                <option>Female</option>
-                <option>Transgender</option>
-            </select>
-            <br>
-            <select class="input-box-1" style="color:grey;">
-                <option>Select City</option>
-                <option>DELHI</option>
-                <option>MUMBAI</option>
-                <option>PUNE</option>
-                <option>Other</option>
-            </select>
-
+        <div class="content-helpline" style="text-align:center; background-color:#5d4529; height:40px; display:flex; justify-content:center; align-items:center; font-size:1rem; font-family:Arial, Helvetica, sans-serif; color:white; border-radius:5px"  >Adoption-Helpline: 999 999 999
         </div>
-        <div class=" content-box content-box-2">
-            <textarea  placeholder="Expertise" class="input-box-2"></textarea>
-            <br>
-            <textarea  placeholder="Permanent Address" class="input-box-2"></textarea>
-            <br>
-            <textarea  placeholder="Current Address" class="input-box-2"></textarea>
+        <div class="content-heading" style="padding:20px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#5d4529; ">
+            <h1>Animals For Adoption</h1>
+        </div>
+        <form method="GET" action="/animals">
+            <div class="gender"style="display:inline-block; padding:20px">
+                <p style="font-size:1rem; font-family:sans-serif; font-weight:500;">Gender</p>
+                <select name="gender" id="genderFilter">
+                    <option value="All" <%= gender === 'All' ? 'selected' : '' %>>All</option>
+                    <option value="Male" <%= gender === 'Male' ? 'selected' : '' %>>Male</option>
+                    <option value="Female" <%= gender === 'Female' ? 'selected' : '' %>>Female</option>
+                </select>
+            </div>
+            <div class="age-group"style="display:inline-block; padding:20px">
+                <p style="font-size:1rem; font-family:sans-serif; font-weight:500;">Age Group</p>
+                <select style="height:40px; width:400px; border-radius:10px " name="ageFilter">
+                    <option value="all" <%= ageRange === 'all' ? 'selected' : '' %>>All</option>
+                    <option value="under_9_months" <%= ageRange === 'under_9_months' ? 'selected' : '' %>>Baby (under 9 months)</option>
+                    <option value="9_months_to_6_years" <%= ageRange === '9_months_to_6_years' ? 'selected' : '' %>>Adult (1-6 years)</option>
+                    <option value="6_years_plus" <%= ageRange === '6_years_plus' ? 'selected' : '' %>>Senior (6+ years)</option>
+                </select>
+            </div>
+            <button type="submit" >Apply Filters</button>
+        </form>
+        <div class="content-div">
+
+            <% if (animals.length > 0) { %>
+                <% animals.forEach(animal => { %>
+    
+            <a href="abcd.com" style="text-decoration:none; color:green;" >
+                <div class="content-box">
+                    <img src="../image?name=<%= animal.img %>" alt="animal.name" style=" height: 67%; width:100%;border-radius:10px;">
+                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900;     font-weight:900;"><%= animal.name %></p>
+                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Gender: <%= animal.gender %>   <i class="fa-solid fa-circle" style="font-size:9px;"></i><%= animal.age < 9 ? 'Baby' : (animal.age <= 72 ? 'Adult' : 'Senior') %></pre>
+                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
+                </div>
+            </a>
+    
+            <% }) %>
+            <% } else { %>
+                <p>No animals found for the selected filters.</p>
+        <% } %>
         </div>
     </div>
-
     <footer>
         <div class="foot-panel">
            <div class="box1 foot-box" style="width:500px">
@@ -129,6 +121,6 @@
                     <p>HQ: People For Animals, 14 Ashoka Road, Jantar Mantar Road, New Delhi 110001.</p>
            </div>
         </div>
-    </footer>
+   </footer>
 </body>
 </html>

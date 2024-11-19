@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Animal Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        .form-container {
+            width: 500px;
+            margin: 0 auto;
+            padding: 20px;
+            border: 1px solid #ccc;
+            border-radius: 8px;
+            background-color: #f9f9f9;
+        }
+        label {
+            display: block;
+            margin: 8px 0 4px;
+        }
+        input[type="text"],
+        textarea {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 12px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+        }
+        input[type="file"] {
+            margin-bottom: 12px;
+        }
+        button {
+            padding: 10px 20px;
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        button:hover {
+            background-color: #45a049;
+        }
+        .success-message {
+            margin-top: 20px;
+            color: green;
+        }
+        .error-message {
+            margin-top: 20px;
+            color: red;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Admin Animal Form</h1>
+
+<div class="form-container">
+    <form id="adminForm" enctype="multipart/form-data">
+        <div>
+            <label for="Authorization">Authorisation Code</label>
+            <input type="text" id="auth" name="auth" required>
+        </div>
+        <div>
+            <label for="name">Animal Name:</label>
+            <input type="text" id="name" name="name" required>
+        </div>
+        <div>
+            <label for="species">Species:</label>
+            <input type="text" id="species" name="species" required>
+        </div>
+        <div>
+            <label for="age">Age:</label>
+            <input type="text" id="age" name="age" required>
+        </div>
+        <div>
+            <label for="description">Description:</label>
+            <textarea id="description" name="description" rows="4" required></textarea>
+        </div>
+        <div>
+            <label for="image">Upload Image:</label>
+            <input type="file" id="image" name="image" accept="image/*" required>
+        </div>
+        <div>
+            <label for="adopt">Adopted:</label>
+            <input type="checkbox" id="adopt" name="adopt" value="true">
+        </div>
+        <div>
+            <label>Gender:</label>
+            <div>
+                <label for="male">Male</label>
+                <input type="radio" id="male" name="gender" value="Male">
+            </div>
+            <div>
+                <label for="female">Female</label>
+                <input type="radio" id="female" name="gender" value="Female">
+            </div>
+        </div>
+        <button type="submit">Submit</button>
+    </form>
+</div>
+    <div id="message"></div>
+</div>
+
+<script>
+    document.getElementById('adminForm').addEventListener('submit', async function (e) {
+    e.preventDefault();
+
+    const formData = new FormData();
+    formData.append('name', document.getElementById('name').value);
+    formData.append('auth', document.getElementById('auth').value);
+    formData.append('species', document.getElementById('species').value);
+    formData.append('age', document.getElementById('age').value);
+    formData.append('description', document.getElementById('description').value);
+    formData.append('image', document.getElementById('image').files[0]);
+    formData.append('adopt', document.getElementById('adopt').checked ? 'true' : 'false');
+
+    const gender = document.querySelector('input[name="gender"]:checked');
+    if (gender) {
+        formData.append('gender', gender.value);
+    } else {
+        document.getElementById('message').innerHTML = '<p class="error-message">Please select a gender.</p>';
+        return;
+    }
+
+    try {
+        const response = await fetch('/admin', {
+            method: 'POST',
+            body: formData,
+        });
+
+        const result = await response.json();
+
+        if (response.ok) {
+            document.getElementById('message').innerHTML = `<p class="success-message">${result.message}</p>`;
+
+            const submitAgain = confirm('Do you want to submit another animal?');
+
+            if (submitAgain) {
+                document.getElementById('adminForm').reset();
+                document.getElementById('message').innerHTML = '';
+            }
+        } else {
+            document.getElementById('message').innerHTML = `<p class="error-message">${result.error}</p>`;
+        }
+    } catch (error) {
+        document.getElementById('message').innerHTML = `<p class="error-message">Something went wrong. Please try again.</p>`;
+    }
+});
+
+</script>
+
+</body>
+</html>

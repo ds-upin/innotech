@@ -15,7 +15,7 @@
             <div class="logo">
                 <div class="nav-logo">
                 </div>
-                <a href="../" style="text-decoration:none; color:white;">PEEPAL FARM</a>
+                <a href="../" style="text-decoration:none; color:white;">ANIMAL ALLIES</a>
             </div> 
 
            <div class="tabs">
@@ -46,167 +46,110 @@
         </div>
     </header>
 
-    <div class="content">
-        <div class="content-helpline" style="text-align:center; background-color:#5d4529; height:40px; display:flex; justify-content:center; align-items:center; font-size:1rem; font-family:Arial, Helvetica, sans-serif; color:white; border-radius:5px"  >Adoption-Helpline: 999 999 999</div>
+    <!-- <div class="content">
+        <div class="content-helpline" style="text-align:center; background-color:#5d4529; height:40px; display:flex; justify-content:center; align-items:center; font-size:1rem; font-family:Arial, Helvetica, sans-serif; color:white; border-radius:5px"  >Adoption-Helpline: 999 999 999
+            
+        </div>
 
         <div class="content-heading" style="padding:20px; font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif; color:#5d4529; ">
             <h1>Animals For Adoption</h1>
         </div>
-
-            <div class="gender"style="display:inline-block; padding:20px">
+        <form action="/adoptions" method="get">
+            <div class="gender" style="display:inline-block; padding:20px">
                 <p style="font-size:1rem; font-family:sans-serif; font-weight:500;">Gender</p>
-                <select style="height:40px; width:400px; border-radius:10px ">
-                    <option>All</option>
-                    <option>Male</option>
-                    <option>Female</option>
+                <select style="height:40px; width:400px; border-radius:10px" name="gender" id="genderFilter" onchange="this.form.submit()">
+                    <option value="All" <%= gender === 'All' ? 'selected' : '' %>>All</option>
+                    <option value="Male" <%= gender === 'Male' ? 'selected' : '' %>>Male</option>
+                    <option value="Female" <%= gender === 'Female' ? 'selected' : '' %>>Female</option>
                 </select>
             </div>
-
-            <div class="age-group"style="display:inline-block; padding:20px">
+        
+            <div class="age-group" style="display:inline-block; padding:20px">
                 <p style="font-size:1rem; font-family:sans-serif; font-weight:500;">Age Group</p>
-                <select style="height:40px; width:400px; border-radius:10px ">
-                    <option>All</option>
-                    <option>Baby(under 9 months)</option>
-                    <option>Adult(1-6 years)</option>
-                    <option>Senior(6+ years)</option>
+                <select style="height:40px; width:400px; border-radius:10px" name="ageRange" id="ageFilter" onchange="this.form.submit()">
+                    <option value="all" <%= ageRange === 'all' ? 'selected' : '' %>>All</option>
+                    <option value="under_9_months" <%= ageRange === 'under_9_months' ? 'selected' : '' %>>Baby (under 9 months)</option>
+                    <option value="9_months_to_6_years" <%= ageRange === '9_months_to_6_years' ? 'selected' : '' %>>Adult (1-6 years)</option>
+                    <option value="6_years_plus" <%= ageRange === '6_years_plus' ? 'selected' : '' %>>Senior (6+ years)</option>
                 </select>
             </div>
+        </form>
+        <div class="content-div">
+            <% if (animals.length > 0) { %>
+                <% animals.forEach(animal => { %>
+                    <a href="/adopt/<%= animal._id %>" style="text-decoration: none; color: green;">
+                        <div class="content-box">
+                            <img src="<%= animal.img %>" alt="<%= animal.name %>" style="height: 67%; width:100%; border-radius:10px;">
+                            <p><%= animal.name %></p>
+                            <pre>Gender: <%= animal.gender %>   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   <%= animal.age < 9 ? 'Baby' : (animal.age <= 72 ? 'Adult' : 'Senior') %></pre>
+                            <p class="adopt-btn">A D O P T</p>
+                        </div>
+                    </a>
+                <% }) %>
+            <% } else { %>
+                <p>No animals found for the selected filters.</p>
+            <% } %>
+        </div>
+        <div class="content-div">
 
-            <div class="content-div">
-                <div class="content-box"><a href="abcd.com" style="text-decoration:none; color:green; " >
-                    <img src="../adoption_images/image1 (2).png" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Matargasti</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </a></div>
+            <% if (animals.length > 0) { %>
+                <% animals.forEach(animal => { %>
+                    <a href="/adopt/<%= animal._id %>" style="text-decoration: none; color: green;">
+                        <div class="content-box">
+                            <img src="<%= animal.img %>" alt="<%= animal.name %>" style="height: 67%; width:100%; border-radius:10px;">
+                            <p><%= animal.name %></p>
+                            <pre>Gender: <%= animal.gender %>   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   <%= animal.age < 9 ? 'Baby' : (animal.age <= 72 ? 'Adult' : 'Senior') %></pre>
+                            <p class="adopt-btn">A D O P T</p>
+                        </div>
+                    </a>
+                <% }) %>
+            <% } else { %>
+        </div>
+    -->
 
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image2 (2).png" alt="animal_image" style=" height: 67%; width:100%; border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Winky</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Male   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px; border-radius:10px;">A D O P T</p>
-                </div></a>
 
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image3.png" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Orange</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Male   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Adult </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
 
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image4.jpeg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Olly</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
+<div>
+    <form method="GET" action="/animals">
+        <div style="display: inline-block; padding: 20px;">
+            <label for="genderFilter">Gender</label>
+            <select name="gender" id="genderFilter">
+                <option value="All" <%= gender === 'All' ? 'selected' : '' %>>All</option>
+                <option value="Male" <%= gender === 'Male' ? 'selected' : '' %>>Male</option>
+                <option value="Female" <%= gender === 'Female' ? 'selected' : '' %>>Female</option>
+            </select>
+        </div>
 
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image5.JPG" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Peanut</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
+        <div style="display: inline-block; padding: 20px;">
+            <label for="ageFilter">Age Group</label>
+            <select name="ageRange" id="ageFilter">
+                <option value="all" <%= ageRange === 'all' ? 'selected' : '' %>>All</option>
+                <option value="under_9_months" <%= ageRange === 'under_9_months' ? 'selected' : '' %>>Baby (under 9 months)</option>
+                <option value="9_months_to_6_years" <%= ageRange === '9_months_to_6_years' ? 'selected' : '' %>>Adult (1-6 years)</option>
+                <option value="6_years_plus" <%= ageRange === '6_years_plus' ? 'selected' : '' %>>Senior (6+ years)</option>
+            </select>
+        </div>
 
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image6.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Ola</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
+        <button type="submit" style="height:40px; width:120px; border-radius:10px;">Apply Filters</button>
+    </form>
+</div>
 
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image7.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Barkha</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image8.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Aasma</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image9.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Boond</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image10.jpeg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Kusum</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image11.jpeg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Daisy</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image12.jpeg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Bubbles</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image13.jpeg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Atrangi</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image14.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Gulaab</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none;color:green;" ><div class="content-box">
-                    <img src="adoption_images\iamge15.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Musoorie</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none;color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image16.png" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Nanu</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image17.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Kahani</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image18.jpg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Suhani</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Baby </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>
-
-                <a href="abcd.com" style="text-decoration:none; color:green;" ><div class="content-box">
-                    <img src="../adoption_images\image19.jpeg" alt="animal_image" style=" height: 67%; width:100%;border-radius:10px;">
-                    <p style="text-align:center; padding:10px; font-family:Georgia, 'Times New Roman', Times, serif; font-size:20px; color:#009900; font-weight:900;">Hansi</p>
-                    <pre style="font-family:Georgia, 'Times New Roman', Times, serif; text-align:center; padding:20px;">Female   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   Adult </pre>
-                    <p style="text-align:center; font-weight:900 ; color:white; background-color:#009900; margin-top:10px;border-radius:10px;">A D O P T</p>
-                </div></a>    
-            </div>     
-    </div>
+<div id="animalsContainer" style="display: flex; flex-wrap: wrap; gap: 20px; margin-top: 30px;">
+    <% if (animals.length > 0) { %>
+        <% animals.forEach(animal => { %>
+            <a href="" style="text-decoration: none; color: green;">
+                <div class="content-box">
+                    <img src="<%= animal.img %>" alt="<%= animal.name %>" style="height: 67%; width:100%; border-radius:10px;">
+                    <p><%= animal.name %></p>
+                    <pre>Gender: <%= animal.gender %>   <i class="fa-solid fa-circle" style="font-size:9px;"></i>   <%= animal.age < 9 ? 'Baby' : (animal.age <= 72 ? 'Adult' : 'Senior') %></pre>
+                    <p class="adopt-btn">A D O P T</p>
+                </div>
+            </a>
+        <% }) %>
+    <% } else { %>
+        <p>No animals found for the selected filters.</p>
+    <% } %>
+</div>
 
     <footer>
         <div class="foot-panel">

@@ -13,6 +13,7 @@ const handleAdminPost = async (req, res) => {
   }
   await animaldb.create({
     name:textField.name,
+    gender:textField.gender,
     species: textField.species,
     age: textField.age,
     img: `${image.filename}`,
