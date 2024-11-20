@@ -1,8 +1,9 @@
-let socket = io.connect("http://localhost:5000");
+let socket = io.connect("https://6lm6t137-5000.inc1.devtunnels.ms");
 let divVideoChatLobby = document.getElementById("video-chat-lobby");
 let divVideoChat = document.getElementById("video-chat-room");
 let joinButton = document.getElementById("join");
 let userVideo = document.getElementById("user-video");
+userVideo.muted = true;
 let peerVideo = document.getElementById("peer-video");
 let roomInput = document.getElementById("roomName");
 let roomName;
@@ -31,7 +32,7 @@ socket.on("created", function () {
 
   navigator.mediaDevices
     .getUserMedia({
-      audio: true,
+      audio: {echoCancellation: true,},
       video: { width: 1280, height: 720 },
     })
     .then(function (stream) {
@@ -70,7 +71,7 @@ socket.on("joined", function () {
 });
 
 socket.on("full", function () {
-  alert("Room is Full, Can't Join");
+  alert("Session has expired or room is full");
 });
 
 socket.on("ready", function () {
