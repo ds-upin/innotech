@@ -45,7 +45,7 @@ app.get('/animal_info/:id', async (req, res) => {
     if (dd.length === 0) {
       return res.json({'msg':"wrong"});
     }
-    console.log(dd);
+    //console.log(dd);
     res.render('animal_info', {dd});
   } catch (error) {
     console.error(error);
@@ -84,7 +84,6 @@ app.get('/animals', async (req, res) => {
           filter.age = { $gt: 72 }; 
       }
   }
-
   try {
       const animals = await animaldb.find(filter);  
       res.render('animals', { 
@@ -101,7 +100,6 @@ app.get('/animals', async (req, res) => {
 
 let io = socket(server);
 io.on("connection", function (socket) {
-  console.log("User Connected :" + socket.id);
   socket.on("join", function (roomName) {
     let rooms = io.sockets.adapter.rooms;
     let room = rooms.get(roomName);
@@ -114,7 +112,6 @@ io.on("connection", function (socket) {
     } else {
       socket.emit("full");
     }
-    console.log(rooms);
   });
 
   socket.on("ready", function (roomName) {
@@ -122,7 +119,6 @@ io.on("connection", function (socket) {
   });
 
   socket.on("candidate", function (candidate, roomName) {
-    console.log(candidate);
     socket.broadcast.to(roomName).emit("candidate", candidate); 
   });
 
@@ -134,8 +130,3 @@ io.on("connection", function (socket) {
     socket.broadcast.to(roomName).emit("answer", answer);
   });
 });
-
-// const PORT = process.env.PORT || 5000;
-// server.listen(PORT, () => {
-//   console.log(`Server is running on port ${PORT}`);
-// });
