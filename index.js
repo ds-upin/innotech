@@ -33,7 +33,6 @@ app.use('/image',imageRouter);
 app.get('/our_gallery',(req,res)=>{ res.render('our_gallery')});
 app.get('/donation',(req,res)=>{ res.render('donation')});
 app.get('/membership',(req,res)=>{ res.render('membership')});
-//app.get('/adoptions',(req,res)=> res.render('adoptions'));
 app.get('/About_Us',(req,res)=> res.render('About_Us'));
 app.get('/video',(req,res)=>{res.render('')});
 app.get('/animal_info/:id', async (req, res) => {
@@ -45,7 +44,6 @@ app.get('/animal_info/:id', async (req, res) => {
     if (dd.length === 0) {
       return res.json({'msg':"wrong"});
     }
-    //console.log(dd);
     res.render('animal_info', {dd});
   } catch (error) {
     console.error(error);
@@ -67,10 +65,7 @@ app.get('/adopt/:id',async (req,res)=>{
 
 app.get('/animals', async (req, res) => {
   const { gender = 'All', ageRange = 'all' } = req.query; 
-
   let filter = {};
-
-
   if (gender && gender !== 'All') {
       filter.gender = gender;
   }
