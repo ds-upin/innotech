@@ -166,8 +166,6 @@
 
 /**foot-panel**/
 
-
-
 .foot-panel{
     height:400px;
     width:100%;
@@ -179,8 +177,6 @@
     justify-content:space-evenly;
     /* align-items:center; */
 }
-
-
 
 .foot-panel .foot-box{
     height:fit-content;

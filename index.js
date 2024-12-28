@@ -1,9 +1,10 @@
 const express = require('express');
 const http = require('http');
+const path = require('path');
 const socket = require('socket.io');
 const imageRouter = require('./router/images');
 const adminRouter = require('./router/adminRoute');
-const path = require('path');
+const aboutRouter = require('./router/About_UsRoute');
 const {connectToMongoDb} = require('./connection');
 const animaldb = require('./models/animals');
 
@@ -13,6 +14,7 @@ const server = http.createServer(app);
 const PORT = process.env.PORT || 5000;
 server.listen(PORT, () => {
   console.log(`Server is running on port ${PORT}`);
+  console.log(`Site available on localhost - http://localhost:${PORT}`);
 });
 
 app.use(express.urlencoded({extended: true}));
@@ -25,16 +27,19 @@ connectToMongoDb('mongodb://127.0.0.1:27017/Animals')
 app.set('view engine', 'ejs');
 app.set('views', path.join(__dirname, 'public','HTML'));
 app.use(express.static('public'));
+
 app.get('/',(req,res)=>{
   res.render('index');
 });
+
 app.use('/admin',adminRouter);
 app.use('/image',imageRouter);
+app.use('/About_Us',aboutRouter);
 app.get('/our_gallery',(req,res)=>{ res.render('our_gallery')});
 app.get('/donation',(req,res)=>{ res.render('donation')});
 app.get('/membership',(req,res)=>{ res.render('membership')});
-app.get('/About_Us',(req,res)=> res.render('About_Us'));
 app.get('/video',(req,res)=>{res.render('')});
+
 app.get('/animal_info/:id', async (req, res) => {
   const info = req.params.id;
   
@@ -69,7 +74,6 @@ app.get('/animals', async (req, res) => {
   if (gender && gender !== 'All') {
       filter.gender = gender;
   }
-
   if (ageRange) {
       if (ageRange === 'under_9_months') {
           filter.age = { $lt: 9 };  
@@ -84,14 +88,13 @@ app.get('/animals', async (req, res) => {
       res.render('animals', { 
           animals,
           gender,   
-          ageRange 
+          ageRange,
       });
   } catch (error) {
       console.error('Error:', error);
       res.status(500).send('Internal Server Error');
   }
 });
-
 
 let io = socket(server);
 io.on("connection", function (socket) {

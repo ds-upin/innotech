@@ -161,11 +161,6 @@ body{
     border-bottom:2px solid skyblue;
   }
 
-
-/**foot-panel**/
-
-
-
 .foot-panel{
   height:400px;
   width:100%;
@@ -177,8 +172,6 @@ body{
   justify-content:space-evenly;
   /* align-items:center; */
 }
-
-
 
 .foot-panel .foot-box{
   height:fit-content;

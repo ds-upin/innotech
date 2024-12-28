@@ -48,8 +48,6 @@
     justify-content:space-evenly;
 }
 
-
-
 .tab-style{
     background-color:#c96500;
     border:none;
@@ -199,16 +197,6 @@ body{
     box-shadow:0 0 10px rgba(0,0,0,0.8);
 }
 
-
-
-
-
-
-
-/**foot-panel**/
-
-
-
 .foot-panel{
     height:400px;
     width:100%;
@@ -220,8 +208,6 @@ body{
     justify-content:space-evenly;
     /* align-items:center; */
 }
-
-
 
 .foot-panel .foot-box{
     height:fit-content;
@@ -277,7 +263,6 @@ body{
     color:black;
     font-weight:500;
 }
-
 
 .box3 h2{
     text-align:center;

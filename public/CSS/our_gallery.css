@@ -46,8 +46,6 @@
     justify-content:space-evenly;
 }
 
-
-
 .tab-style{
     background-color:#c96500;
     border:none;
@@ -67,15 +65,12 @@
     width:8rem;
 } */
 
-
-
 .tab-style a {
     text-decoration:none;
     font-family:'Times New Roman', Times, serif ;
     font-weight:500;
     color:white;
 }
-
 
 /**hero section**/
 
@@ -144,10 +139,7 @@
 
 }
 
-
 /**foot-panel**/
-
-
 
 .foot-panel{
     height:400px;
@@ -160,8 +152,6 @@
     justify-content:space-evenly;
     /* align-items:center; */
 }
-
-
 
 .foot-panel .foot-box{
     height:fit-content;
@@ -217,7 +207,6 @@
     color:black;
     font-weight:500;
 }
-
 
 .box3 h2{
     text-align:center;

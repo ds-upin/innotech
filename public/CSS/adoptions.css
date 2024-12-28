@@ -132,11 +132,6 @@
     margin: 0 auto;
 }
 
-
-/**foot-panel**/
-
-
-
 .foot-panel{
     height:400px;
     width:100%;
@@ -148,8 +143,6 @@
     justify-content:space-evenly;
     /* align-items:center; */
 }
-
-
 
 .foot-panel .foot-box{
     height:fit-content;
@@ -228,12 +221,5 @@
     text-align:center;
     margin-top:20px;
 }
-
-
-
-
-
-
-
 
 
