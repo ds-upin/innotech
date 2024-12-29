@@ -1,13 +1,12 @@
 const cluster =  require('cluster');
 const os = require('os');
-const express = require('express');
 
 const totalCPUs = os.cpus().length;
 
 if(cluster.isPrimary){
     // fork workers
     console.log(`Primary ${process.pid} is running.`);
-    
+
     for(let i=0; i<totalCPUs; i++){
         cluster.fork();
     }

@@ -1,0 +1,24 @@
+# Node.js dependencies
+/node_modules/
+
+# Build output
+/dist/
+/build/
+
+# Log files
+*.log
+
+# OS-generated files (Windows-specific)
+Thumbs.db
+ehthumbs.db
+
+# macOS-generated files (for cross-platform development)
+.DS_Store
+
+# Environment files (sensitive data)
+.env
+.env.local
+.env.*.local
+
+# npm package lock
+package-lock.json
