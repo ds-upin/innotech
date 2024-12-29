@@ -2,9 +2,12 @@ const express = require('express');
 const http = require('http');
 const path = require('path');
 const socket = require('socket.io');
+const status = require('express-status-monitor');
 const imageRouter = require('./router/images');
 const adminRouter = require('./router/adminRoute');
 const aboutRouter = require('./router/About_UsRoute');
+const adoptRouter = require('./router/adoptRoute');
+const animalsRouter = require('./router/animalRoute');
 const {connectToMongoDb} = require('./connection');
 const animaldb = require('./models/animals');
 
@@ -17,6 +20,7 @@ server.listen(PORT, () => {
   console.log(`Site available on localhost - http://localhost:${PORT}`);
 });
 
+app.use(status());
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
 
@@ -35,6 +39,8 @@ app.get('/',(req,res)=>{
 app.use('/admin',adminRouter);
 app.use('/image',imageRouter);
 app.use('/About_Us',aboutRouter);
+app.use('/adopt',adoptRouter);
+app.use('/animals',animalsRouter);
 app.get('/our_gallery',(req,res)=>{ res.render('our_gallery')});
 app.get('/donation',(req,res)=>{ res.render('donation')});
 app.get('/membership',(req,res)=>{ res.render('membership')});
@@ -60,41 +66,11 @@ app.get('/connect',(req,res)=>{
   res.render('video');
 });
 
-app.get('/adopt/:id',async (req,res)=>{
-  const id = req.params.id;
-  const data = await animaldb.find({
-    img:id,
-  });
-  res.status(200).json({"data":data});
-});
 
-app.get('/animals', async (req, res) => {
-  const { gender = 'All', ageRange = 'all' } = req.query; 
-  let filter = {};
-  if (gender && gender !== 'All') {
-      filter.gender = gender;
-  }
-  if (ageRange) {
-      if (ageRange === 'under_9_months') {
-          filter.age = { $lt: 9 };  
-      } else if (ageRange === '9_months_to_6_years') {
-          filter.age = { $gte: 9, $lte: 72 };
-      } else if (ageRange === '6_years_plus') {
-          filter.age = { $gt: 72 }; 
-      }
-  }
-  try {
-      const animals = await animaldb.find(filter);  
-      res.render('animals', { 
-          animals,
-          gender,   
-          ageRange,
-      });
-  } catch (error) {
-      console.error('Error:', error);
-      res.status(500).send('Internal Server Error');
-  }
-});
+
+
+
+
 
 let io = socket(server);
 io.on("connection", function (socket) {
